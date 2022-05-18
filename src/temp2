@@ -1,8 +1,9 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'; 
 
 
-
+import Header from './components/Header';
 import Footer from './components/Footer';
 
 import HomeScreen from './screens/HomeScreen';
@@ -12,7 +13,7 @@ import AboutScreen from './screens/AboutScreen';
 import Login from "./components/Login";
 
 import { authProvider } from "./authProvider";
-import { AzureAD, AuthenticationState } from "react-aad-msal";
+import { AzureAD } from "react-aad-msal";
 
 
 
@@ -24,27 +25,24 @@ const App = () => {
                     <Router>
                          
                         <Switch>
-                            
                             <Route
                                 exact
                                 path="/login"
                                 component={Login}
                             ></Route>
-     
                             <Route exact path='/'>
-                                {(authenticationState === AuthenticationState.Authenticated) ? (
+                                {authenticationState ? (
                                     <HomeScreen />
                                 ) : (
                                     <Redirect to="/login" />
                                 )}
+                                
                             </Route>
-                            <Route path='/book/:id' component={BookScreen} />
+                            <Route path='/book/:id'> 
+                                <BookScreen/>
+                            </Route>
                             <Route path='/about'>         
-                                {(authenticationState === AuthenticationState.Authenticated) ? (
-                                    <AboutScreen/>
-                                ) : (
-                                    <Redirect to="/login" />
-                                )}
+                                <AboutScreen/>
                             </Route>
                             <Footer/> 
                         </Switch>
