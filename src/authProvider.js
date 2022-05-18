@@ -6,7 +6,7 @@ const config = {
   auth: {
     authority: 'https://login.microsoftonline.com/common',
     clientId: 'f4e1d50d-4313-4307-a6d4-431d95804628',
-    redirectUri: 'http://localhost'
+    redirectUri: 'https://storeofmanybooks.com/'
   },
   cache: {
     cacheLocation: "localStorage",
@@ -22,7 +22,7 @@ const authenticationParameters = {
 // Options
 const options = {
   loginType: LoginType.Popup,
-  tokenRefreshUri: 'http://localhost'
+  tokenRefreshUri: 'https://storeofmanybooks.com/'
 }
  
 export const authProvider = new MsalAuthProvider(config, authenticationParameters, options)
